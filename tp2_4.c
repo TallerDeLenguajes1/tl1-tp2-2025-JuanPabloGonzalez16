@@ -19,61 +19,67 @@ struct compu {
     int cantidad_nucleos;
     char *tipo_cpu;
 }typedef compu;
+void listarPCs(compu p[], int cantidad);
+void mostrarMasVieja(compu pcs[], int cantidad);
+void mostrarMasVeloz(compu pcs[], int cantidad);
 int main(){
     char tipos[6][10] = {"Intel", "AMD", "Celeron", "Athlon", "Core",
     "Pentium"};
-    int numeroDePC;
+    int numeroDePC = 5;
     srand(time(NULL));
     compu *pcs = (compu*)malloc(sizeof(compu)*numeroDePC);
+    int k,l;
     for(int i=0;i<numeroDePC;i++){
         pcs[i].velocidad = 1 + rand() % (3); 
         pcs[i].anio = rand () % (2024-2015+1) + 2015;  
-        pcs[i].cantidad_nucleos = 1 + rand() % (8);
+        pcs[i].cantidad_nucleos = rand() % (8);
         // Este está entre M y N
+            k = rand() % 6;
+            pcs[i].tipo_cpu = tipos[k];
     }
-
+    listarPCs(pcs,numeroDePC);
+    mostrarMasVieja(pcs,numeroDePC);
+    mostrarMasVeloz(pcs,numeroDePC);
 }
-/*La aplicación no requerirá ingreso de datos por teclado. En su lugar,
-generará aleatoriamente las características para 5 PCs.
-● Valores Numéricos Aleatorios:
-○ Velocidad: Generar un valor entero aleatorio entre 1 y 3
-(inclusive).
-○ Año: Generar un valor entero aleatorio entre 2015 y 2024
-(inclusive).
-○ Cantidad de Núcleos: Generar un valor entero aleatorio entre
-1 y 8 (inclusive).
-● Tipos de Procesador:
-○ Utiliza el siguiente arreglo predefinido de cadenas de
-caracteres para los tipos de CPU:
-char tipos[6][10] = {"Intel", "AMD", "Celeron", "Athlon", "Core",
-"Pentium"};
-○ Para cada PC generada, el campo tipo_cpu de la estructura
-deberá apuntar a una cadena seleccionada aleatoriamente de
-este arreglo tipos.
-c. Almacenamiento de Datos
-● Define una variable que sea un arreglo de 5 elementos del tipo struct
-compu. Este arreglo almacenará las características de las 5 PCs
-generadas.
-d. Funciones a Implementar
-Deberás escribir e implementar las siguientes funciones:
-*/
-void listarPCs(struct compu pcs[], int cantidad){
-
+void listarPCs(compu p[], int cantidad){
+    for(int i=0;i<cantidad;i++){
+        printf("\nPc N°%d",i+1);
+        printf("\nVelocidad: %d",p[i].velocidad);
+        printf("\nAnio: %d",p[i].anio);
+        printf("\nCantidad de Nucleos: %d",p[i].cantidad_nucleos);
+        printf("\nTipo CPU: %s",p[i].tipo_cpu);
+    }
+}   
+void mostrarMasVieja(compu pcs[], int cantidad){
+    int i;
+    int indice;
+    int menor = 1000;
+    for(i=0;i<cantidad;i++){
+        if(pcs[i].anio < menor){
+            menor = pcs[i].anio;
+            indice = i;
+        }
+    }
+    printf("\nPc mas vieja: ");
+    printf("\nVelocidad: %d",pcs[indice].velocidad);
+    printf("\nAnio: %d",pcs[indice].anio);
+    printf("\nCantidad de Nucleos: %d",pcs[indice].cantidad_nucleos);
+    printf("\nTipo CPU: %s",pcs[indice].tipo_cpu);
 }
-/*Recibe el arreglo de PCs y la cantidad de elementos.
-Muestra por pantalla la lista completa de las PCs,
-presentando todas las características de cada una de forma
-clara.*/
-/*
-● void mostrarMasVieja(struct compu pcs[], int cantidad):
-○ Recibe el arreglo de PCs y la cantidad de elementos.
-○ Busca la PC con el menor año de fabricación (la más vieja).
-○ Muestra por pantalla las características de la PC más vieja
-encontrada. Si hay varias con el mismo año más antiguo,
-puedes mostrar la primera que encuentres.
-● void mostrarMasVeloz(struct compu pcs[], int cantidad):
-○ Recibe el arreglo de PCs y la cantidad de elementos.
-○ Busca la PC con la mayor velocidad de procesamiento.
-○ Muestra por pantalla las características de la PC más rápida
-encontrada. Si hay varias con la misma velocidad máxima,
-puedes mostrar la primera que encuentres.*/
+void mostrarMasVeloz(compu pcs[], int cantidad){
+    int i;
+    int indice;
+    int velocidad = 0;
+    for(i=0;i<cantidad;i++){
+        if(pcs[i].velocidad> velocidad){
+            velocidad = pcs[i].velocidad;
+            indice = i;
+        }
+    }
+    printf("\nPc Mas Rapida:");
+    printf("\nVelocidad: %d",pcs[indice].velocidad);
+    printf("\nAnio: %d",pcs[indice].anio);
+    printf("\nCantidad de Nucleos: %d",pcs[indice].cantidad_nucleos);
+    printf("\nTipo CPU: %s",pcs[indice].tipo_cpu);
+
+}  
