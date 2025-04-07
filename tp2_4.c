@@ -1,16 +1,4 @@
-/*Desarrollar una aplicación en C que permita gestionar información sobre
-computadoras (PC) utilizando estructuras y funciones. La aplicación deberá
-generar datos aleatorios para un conjunto de PCs y luego implementar funciones
-para mostrar la información y encontrar características específicas.
-a. Definición de la Estructura de Datos
-Deberás declarar un tipo de dato struct para representar una PC. La estructura se
-llamará compu y contendrá los siguientes campos:
-struct compu {
- int velocidad; // Velocidad de procesamiento en GHz (valor entre 1 y 3)
- int anio; // Año de fabricación (valor entre 2015 y 2024)
- int cantidad_nucleos; // Cantidad de núcleos (valor entre 1 y 8)
- char *tipo_cpu;*/
- #include <stdlib.h>
+#include <stdlib.h>
  #include <stdio.h>
  #include <time.h>
  struct{
