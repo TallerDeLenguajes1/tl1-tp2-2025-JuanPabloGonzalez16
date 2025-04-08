@@ -1,0 +1,3 @@
+No puedo ver el archivo tp2_1_2.c porque esta subido en la rama Opcion_2.
+La diferencia que noto es que el grafo azul sigue un camino bifucardo, Primero hacia la rama Opcion_2 y ademas hacia el main.
+Luego de hacer merge noto que main se unio con la rama opcion 2.
